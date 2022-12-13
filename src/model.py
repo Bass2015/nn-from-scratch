@@ -1,4 +1,4 @@
-import numpy as np
+
 from src.layers import FullyConected as FC
 
 class Net:
@@ -28,6 +28,6 @@ class Net:
             input = layer.forward(input)
         return input
     
-    def backward(self, dl, lr, batch_size):
+    def backward(self, dl, batch_size):
         for layer in reversed(self.layers):
-            dl = layer.backward(dl, lr, batch_size)
+            dl = layer.backward(dl, batch_size)
