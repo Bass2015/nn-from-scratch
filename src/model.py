@@ -7,18 +7,22 @@ class Net:
            -----------
             neurons: list or tuple
                 Number of neurons in each layer. 
-                neurons[0] is input layer.
+                neurons[0] is the input layer.
         """
         self.layers = []
         for n in range(len(neurons)-1):
             ins = neurons[n]
             outs = neurons[n+1]
-            if n == len(neurons)-2 and not last_relu:
-                activation = 'none'
-            else: 
-                activation = 'relu'
+            activation = self.decide_activation(len(neurons), last_relu, n)
             layer = FC(ins, outs, activation=activation)
             self.layers.append(layer)
+
+    def decide_activation(self, neurons, last_relu, n):
+        if n == neurons-2 and not last_relu:
+            activation = 'none'
+        else: 
+            activation = 'relu'
+        return activation
         
     def __call__(self, input):
         return self.forward(input)
