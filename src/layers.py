@@ -3,14 +3,14 @@ import numpy as np
 class FullyConected:
     def __init__(self, ins, outs, activation='relu'):
         self.weights = np.random.normal(0, 1/(ins**.5), (ins, outs))
-        self.bias = np.random.normal(0, 1/(ins**.5), outs)
+        self.bias = np.random.normal(0, 1/(ins**.5), (1, outs))
         self.activation = activation
 
     def forward(self, input):
         """Saves the input for the backward pass. Calculates the weighted sum, 
         applies ReLU if needed, saves the output and returns it. 
         Performs matrix multiplications, so the inputs must come in form of matrix.
-        
+
         Parameters
         ------------
         input: numpy.array
