@@ -24,12 +24,12 @@ class FullyConected:
             self.output = self.z
         return self.output
     
-    def backward(self, dy, batch_size):
+    def backward(self, dl, batch_size):
         if self.activation == 'relu':
-            dy *= np.greater(self.z, 0)
-        dx = np.dot(dy, self.weights.T)
-        self.dw = np.dot(self.input.T, dy) / batch_size
-        self.db = dy.mean(axis=0)
+            dl *= np.greater(self.z, 0)
+        dx = np.dot(dl, self.weights.T)
+        self.dw = np.dot(self.input.T, dl) / batch_size
+        self.db = dl.mean(axis=0)
         return dx
 
 def ReLU(x):
