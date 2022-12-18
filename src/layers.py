@@ -7,15 +7,6 @@ class FullyConected:
         self.activation = activation
 
     def forward(self, input):
-        """Saves the input for the backward pass. Calculates the weighted sum, 
-        applies ReLU if needed, saves the output and returns it. 
-        Performs matrix multiplications, so the inputs must come in form of matrix.
-
-        Parameters
-        ------------
-        input: numpy.array
-            Array of shape (batch_size, num_inputs)]    
-        """
         self.input = input
         self.z = np.matmul(input, self.weights) + self.bias
         if self.activation == 'relu':
